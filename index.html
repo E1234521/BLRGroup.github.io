@@ -20,7 +20,6 @@
     </script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        /* Smooth transition for the mobile menu */
         #mobile-menu {
             transition: transform 0.3s ease-in-out;
         }
@@ -132,7 +131,7 @@
 
         menuBtn.addEventListener('click', () => {
             mobileMenu.classList.remove('translate-x-full');
-            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            document.body.style.overflow = 'hidden';
         });
 
         closeBtn.addEventListener('click', () => {
