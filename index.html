@@ -12,7 +12,8 @@
                     colors: {
                         blrBlue: '#0A255C',
                         blrRed: '#D11A2A',
-                        blrGreen: '#1E6B38'
+                        blrGreen: '#1E6B38',
+                        blrScroll: '#f8f5f2'
                     }
                 }
             }
@@ -23,6 +24,9 @@
         #mobile-menu {
             transition: transform 0.3s ease-in-out;
         }
+        #nav-logo {
+            transition: all 0.3s ease-in-out;
+        }
     </style>
 </head>
 <body class="bg-gray-100 font-sans overflow-x-hidden">
@@ -31,7 +35,7 @@
         <div class="max-w-[1400px] mx-auto flex justify-between items-center">
             
             <a href="#" class="flex items-center shrink-0">
-                <img src="logo.png" alt="BLR Construction" class="h-10 md:h-12 w-auto object-contain">
+                <img src="logo.png" id="nav-logo" alt="BLR Construction" class="h-10 md:h-12 w-auto object-contain">
             </a>
 
             <nav class="hidden lg:flex items-center space-x-10">
@@ -51,7 +55,7 @@
                     Careers <i data-lucide="chevron-down" class="w-4 h-4 ml-1 text-gray-400 group-hover:text-blrRed transition"></i>
                 </button>
 
-                <a href="#" class="bg-blrGreen text-white px-6 py-2.5 rounded font-bold text-[12px] uppercase tracking-widest hover:opacity-90 transition shadow-lg">
+                <a href="#" class="bg-blrBlue text-white px-6 py-2.5 rounded font-bold text-[12px] uppercase tracking-widest hover:opacity-90 transition shadow-lg">
                     Join Our Team
                 </a>
             </nav>
@@ -86,41 +90,72 @@
             <img src="hero-bg-img.png" alt="Construction Site" class="w-full h-full object-cover">
             <div class="absolute inset-0 bg-black/50"></div> 
         </div>
-
         <div class="relative z-10 text-center px-6 flex flex-col items-center max-w-4xl">
             <div class="bg-white p-6 md:p-8 rounded-full shadow-2xl mb-6 md:mb-8 transform hover:scale-105 transition duration-500">
                 <img src="logo.png" alt="BLR" class="h-16 md:h-32 w-auto object-contain">
             </div>
-
             <h1 class="text-white text-3xl sm:text-4xl md:text-7xl font-black tracking-tight leading-tight md:leading-none mb-4 drop-shadow-lg">
                 BLR Construction. <br class="hidden md:block">
                 <span class="text-white font-light italic text-2xl sm:text-3xl md:text-5xl">More than buildings.</span>
             </h1>
-
-            <div class="absolute bottom-10 left-1/2 -translate-x-1/2 text-white flex flex-col items-center animate-bounce cursor-pointer">
-                <span class="uppercase text-[10px] font-bold tracking-[.3em] mb-2">Continue</span>
-                <i data-lucide="chevron-down" class="w-6 h-6"></i>
-            </div>
+        </div>
+        <div class="absolute bottom-10 left-0 right-0 flex flex-col items-center justify-center text-white animate-bounce cursor-pointer z-20">
+            <span class="uppercase text-[10px] font-bold tracking-[.3em] mb-2">Continue</span>
+            <i data-lucide="chevron-down" class="w-6 h-6"></i>
         </div>
     </section>
 
-    <section class="py-20 px-6 bg-white text-center">
-        <h2 class="text-2xl md:text-3xl font-bold text-blrBlue uppercase tracking-tighter">Excellence in Every Frame</h2>
-        <p class="text-gray-500 mt-4 max-w-xl mx-auto leading-relaxed">Providing comprehensive construction services across residential and commercial sectors.</p>
+    <section id="stats-section" class="py-20 bg-blrBlue text-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
+                
+                <div class="flex flex-col items-center">
+                    <div id="star-container" class="flex space-x-1 mb-4 text-yellow-400 w-0 overflow-hidden transition-all duration-1000 ease-out">
+                        <i data-lucide="star" class="w-8 h-8 fill-yellow-400"></i>
+                        <i data-lucide="star" class="w-8 h-8 fill-yellow-400"></i>
+                        <i data-lucide="star" class="w-8 h-8 fill-yellow-400"></i>
+                        <i data-lucide="star" class="w-8 h-8 fill-yellow-400"></i>
+                        <i data-lucide="star" class="w-8 h-8 fill-yellow-400"></i>
+                    </div>
+                    <span class="text-4xl font-black mb-2">5.0</span>
+                    <p class="text-blue-200 uppercase tracking-widest text-xs font-bold">Average Rating</p>
+                </div>
+
+                <div class="flex flex-col items-center">
+                    <div class="text-6xl font-black text-white mb-2 flex">
+                        <span class="counter" data-target="94">0</span>%
+                    </div>
+                    <p class="text-blue-200 uppercase tracking-widest text-xs font-bold">Repeat Clients</p>
+                </div>
+
+                <div class="flex flex-col items-center">
+                    <div class="text-6xl font-black text-white mb-2 flex">
+                        <span class="counter" data-target="1250">0</span>+
+                    </div>
+                    <p class="text-blue-200 uppercase tracking-widest text-xs font-bold">Projects Completed</p>
+                </div>
+
+            </div>
+        </div>
     </section>
 
     <script>
         lucide.createIcons();
 
-        // Navbar scroll behavior
+        // Updated Navbar Scroll Logic: Color remains bg-white
         window.addEventListener('scroll', () => {
             const header = document.getElementById('main-header');
+            const logo = document.getElementById('nav-logo');
+            
             if (window.scrollY > 50) {
-                header.classList.add('py-2', 'bg-white/95', 'backdrop-blur-sm');
-                header.classList.remove('py-4');
+                // Background stays white, only adjust size and shadow
+                header.classList.remove('py-4', 'shadow-sm');
+                header.classList.add('py-2', 'shadow-md');
+                logo.classList.add('scale-90');
             } else {
-                header.classList.add('py-4');
-                header.classList.remove('py-2', 'bg-white/95', 'backdrop-blur-sm');
+                header.classList.remove('py-2', 'shadow-md');
+                header.classList.add('py-4', 'shadow-sm');
+                logo.classList.remove('scale-90');
             }
         });
 
@@ -128,16 +163,56 @@
         const menuBtn = document.getElementById('menu-btn');
         const closeBtn = document.getElementById('close-btn');
         const mobileMenu = document.getElementById('mobile-menu');
-
         menuBtn.addEventListener('click', () => {
             mobileMenu.classList.remove('translate-x-full');
             document.body.style.overflow = 'hidden';
         });
-
         closeBtn.addEventListener('click', () => {
             mobileMenu.classList.add('translate-x-full');
             document.body.style.overflow = '';
         });
+
+        // Replayable Stats Animation Logic
+        const statsSection = document.getElementById('stats-section');
+        const starContainer = document.getElementById('star-container');
+        const counters = document.querySelectorAll('.counter');
+
+        const startAnimations = () => {
+            starContainer.style.width = '168px'; 
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                const updateCount = () => {
+                    const count = +counter.innerText;
+                    const speed = target / 50; 
+                    if (count < target) {
+                        counter.innerText = Math.ceil(count + speed);
+                        setTimeout(updateCount, 20);
+                    } else { 
+                        counter.innerText = target; 
+                    }
+                };
+                updateCount();
+            });
+        };
+
+        const resetAnimations = () => {
+            starContainer.style.width = '0px';
+            counters.forEach(counter => {
+                counter.innerText = '0';
+            });
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    startAnimations();
+                } else {
+                    resetAnimations();
+                }
+            });
+        }, { threshold: 0.3 });
+
+        if(statsSection) observer.observe(statsSection);
     </script>
 </body>
 </html>
